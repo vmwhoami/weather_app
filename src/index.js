@@ -1,10 +1,11 @@
 import './styles/styles.scss';
-import inputValidtion from './assets/validations';
-import modal from './assets/modal';
-let apikey = process.env.KEY
+import addEventsToSearch from './assets/events';
 
-let input = document.getElementById("input")
-let btn = document.getElementById("btn")
+
+
+let apikey = process.env.KEY
+addEventsToSearch()
+
 let info = document.querySelector('.location')
 let countryInitials = document.querySelector('.countryInitials')
 
@@ -18,13 +19,8 @@ let weatherNow = (city) => {
 }
 
 
-btn.addEventListener('click', () => {
-    let error = inputValidtion(input)
-    if (!error) {
-        let searchloc = weatherNow(input.value);
-        fetchData(searchloc)
-    }
-})
+
+
 
 async function fetchData(url) {
     try {
@@ -36,7 +32,7 @@ async function fetchData(url) {
         let lat = weatherData.coord.lat;
         let lon = weatherData.coord.lon;
 
-
+        console.log(lat);
         info.textContent = city
         countryInitials.textContent = county
     } catch (error) {

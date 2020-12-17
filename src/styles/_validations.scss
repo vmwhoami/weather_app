@@ -1,5 +1,13 @@
 .error__msg{
   color: red;
-text-transform: uppercase;
-font-size: 1.4rem;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  visibility: hidden;
+  transform: scaleY(0);
+  transition: all 1s;
+}
+
+.visible{
+  visibility: visible;
+  transform: scaleY(1);
 }
