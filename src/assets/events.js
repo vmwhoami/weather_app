@@ -1,5 +1,6 @@
 import inputValidtion from './validations';
-
+import { forecast, weatherNow } from './queries';
+import { fetchData } from './async';
 export default function addEventsToSearch() {
   let input = document.getElementById("input")
   let btn = document.getElementById("btn")
