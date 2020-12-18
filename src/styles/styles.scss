@@ -1,3 +1,7 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+ 
+
 @import 'validations','info';
 
 *,
@@ -14,7 +18,7 @@ html{
 }
 body{
   font-size: 1.6rem;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .container{

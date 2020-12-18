@@ -4,24 +4,30 @@ let info = document.querySelector('.location');
 
 let getTemp = (data) => {
   let num = Number(data.main.temp)
-  let celsius = Math.round(num - 273.15)
-  let fahrenheit = Math.round((num - 273.15) * 9 / 5 + 32)
+  let celsius = `${Math.round(num - 273.15)}\xB0C`
+  let fahrenheit = `${Math.round((num - 273.15) * 9 / 5 + 32)}\xB0F`
   return [celsius, fahrenheit]
 }
 
-let getBgimg = (data) => {
+let setImg = (data, location) => {
   let imgcode = data.weather[0].icon;
-  let imgLink = `../src/imgs/${imgcode}.png`;
+  let imgLink = `./${location}/${imgcode}.png`;
   console.log(imgLink);
   return imgLink
 }
+
+
 
 let populateDom = (data) => {
   let location = document.querySelector('.location');
   let countryInitials = document.querySelector('.countryInitials');
   let temperature = document.querySelector('.temperature');
   let img = document.querySelector('.img');
-  img.src = getBgimg(data);
+  let descr = document.querySelector('.description')
+  let infoimg = document.querySelector('.infoimg')
+  img.src = setImg(data, 'imgs');
+  infoimg.src = setImg(data, 'icons');
+  descr.textContent = data.weather[0].main
   temperature.textContent = (getTemp(data))[0]
   location.textContent = data.name
   countryInitials.textContent = data.sys.country

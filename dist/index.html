@@ -13,11 +13,25 @@
     <div class="imgfilter"></div>
     <div class="input__container">
       <input class="input" id="input" type="text" name="getweather" placeholder="Name of a city or Country" />
-      <span class="error__msg">Error</span>
+      <span class="error__msg"></span>
       <input class="btn" id="btn" type="button" value="getweather" />
     </div>
     <div class="container">
       <div class="search">
+        <div class="topinfo">
+          <h4 class="temperature"></h4>
+          <img src="./icons/01d.png" alt="infoimg" class="infoimg" />
+          <span class="description"></span>
+        </div>
+
+        <div class="undertop">
+          <h4 class="undertop__feelslike"></h4>
+          <div class="maxmin">
+            <span class="min"></span>
+            <span class="max"></span>
+          </div>
+        </div>
+
         <div class="info">
           <div class="locattion__cont">
             <h3 class="location"></h3>
@@ -32,13 +46,5 @@
         </div>
       </div>
     </div>
-    <!-- <div class="modal" id="modal">
-      <div class="modal-container">
-        <div class="modal-content">
-          <p class="modal-text"></p>
-          <a class="modal-close" href="">&times;</a>
-        </div>
-      </div>
-    </div> -->
   </body>
 </html>
