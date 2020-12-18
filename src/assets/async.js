@@ -3,8 +3,8 @@ let info = document.querySelector('.location');
 
 let getTemp = (data) => {
   let num = Number(data.main.temp)
-  let celsius = num - 273.15
-  let fahrenheit = (num - 273.15) * 9 / 5 + 32
+  let celsius = Math.round(num - 273.15)
+  let fahrenheit = Math.round((num - 273.15) * 9 / 5 + 32)
   return [celsius, fahrenheit]
 }
 
@@ -12,6 +12,8 @@ let getTemp = (data) => {
 let populateDom = (data) => {
   let location = document.querySelector('.location');
   let countryInitials = document.querySelector('.countryInitials')
+  let temperature = document.querySelector('.temperature')
+  temperature.textContent = (getTemp(data))[0]
   location.textContent = data.name
   countryInitials.textContent = data.sys.country
 }
@@ -36,8 +38,7 @@ async function fetchData(url) {
     let lon = data.coord.lon;
     let pedictions = await getPredictions(lat, lon, 'minutely,hourly')
     console.log(pedictions);
-    info.textContent = city
-    countryInitials.textContent = county
+
   } catch (error) {
     let err = document.querySelector('.error__msg');
     err.textContent = "Couldn't find your location"

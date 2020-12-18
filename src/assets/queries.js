@@ -7,4 +7,7 @@ let weatherNow = (location) => {
   return `http://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${apikey}`
 }
 
+let pngsetter = (icon) => {
+  // http://openweathermap.org/img/w/11d.png
+}
 export { forecast, weatherNow }

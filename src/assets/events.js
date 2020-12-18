@@ -11,6 +11,7 @@ export default function addEventsToSearch() {
     if (!errmsg) {
       let searchloc = weatherNow(input.value);
       fetchData(searchloc)
+      input.value = "";
     } else {
       err.classList.add('visible')
       err.textContent = errmsg
