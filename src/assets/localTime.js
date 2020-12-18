@@ -1,8 +1,3 @@
-import './styles/styles.scss';
-import addEventsToSearch from './assets/events';
-addEventsToSearch()
-
-
 let getTime = (str) => {
   let time = str.split(',');
   let hours = time[1].split(':');
@@ -10,7 +5,7 @@ let getTime = (str) => {
   return onlyH
 }
 
-function getLocalTime(offset) {
+export default function getLocalTime(offset) {
   let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -28,7 +23,3 @@ function getLocalTime(offset) {
   return [day, dayOfMonth, month, onlyH]
 
 }
-
-let localTime = getLocalTime(10800);
-
-console.log(localTime);
