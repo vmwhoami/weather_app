@@ -1,6 +1,8 @@
 import { forecast } from './queries';
 import getLocalTime from './localTime';
-let info = document.querySelector('.location');
+
+
+
 
 let getTemp = (data) => {
   let num = Number(data.main.temp)
@@ -12,7 +14,6 @@ let getTemp = (data) => {
 let setImg = (data, location) => {
   let imgcode = data.weather[0].icon;
   let imgLink = `./${location}/${imgcode}.png`;
-  console.log(imgLink);
   return imgLink
 }
 
@@ -38,12 +39,16 @@ let setTemp = (data, num) => {
 }
 
 
-let populateDom = (data) => {
+let populateDom = (data, num = null) => {
   let location = document.querySelector('.location');
   let countryInitials = document.querySelector('.countryInitials');
   let descr = document.querySelector('.description');
-  setImages(data)
-  setTemp(data, 0)
+  if (num) {
+    setTemp(data, num)
+  } else {
+    setTemp(data, 0)
+  }
+
   descr.textContent = data.weather[0].main
 
   location.textContent = data.name
@@ -67,7 +72,16 @@ async function fetchData(url) {
     let response = await fetch(url);
     let data = await response.json();
     populateDom(data)
-
+    let topinfo = document.querySelector('.topinfo');
+    topinfo.addEventListener('click', () => {
+      if (!topinfo.classList.contains('fahrenheit')) {
+        topinfo.classList.remove('fahrenheit')
+        setTemp(data, 0)
+      } else {
+        topinfo.classList.add('fahrenheit')
+        setTemp(data, 1)
+      }
+    })
 
     let lat = data.coord.lat;
     let lon = data.coord.lon;
