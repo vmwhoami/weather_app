@@ -8,16 +8,22 @@
   </head>
   <body>
     <div class="imgcontainer">
-      <img class="img" src="../src/imgs/01d.png" alt="weather" />
+      <img class="img" src="../src/imgs/01n.png" alt="weather" />
+    </div>
+    <div class="imgfilter"></div>
+    <div class="input__container">
+      <input class="input" id="input" type="text" name="getweather" placeholder="Name of a city or Country" />
+      <span class="error__msg">Error</span>
+      <input class="btn" id="btn" type="button" value="getweather" />
     </div>
     <div class="container">
       <div class="search">
-        <input class="input" id="input" type="text" name="getweather" placeholder="Name of a city or Country" />
-        <span class="error__msg">Error</span>
-        <input class="btn" id="btn" type="button" value="getweather" />
         <div class="info">
-          <h3 class="location"></h3>
-          <span class="countryInitials"></span>
+          <div class="locattion__cont">
+            <h3 class="location"></h3>
+            <span class="countryInitials"></span>
+          </div>
+
           <div class="temperature">
             <h5 class="dayOfweek"></h5>
             <span class="localtime"></span>
