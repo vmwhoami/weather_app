@@ -1,4 +1,4 @@
-
+import { forecast } from './queries';
 let info = document.querySelector('.location');
 
 let getTemp = (data) => {
@@ -15,6 +15,13 @@ let populateDom = (data) => {
   location.textContent = data.name
   countryInitials.textContent = data.sys.country
 }
+async function getPredictions(lat, lon, exclude) {
+  let link = forecast(lat, lon, exclude);
+  let data = fetch(link);
+  let raw = await data
+  let predictions = raw.json()
+  return predictions
+}
 
 let countryInitials = document.querySelector('.countryInitials');
 async function fetchData(url) {
@@ -24,10 +31,11 @@ async function fetchData(url) {
     populateDom(data)
     let temp = getTemp(data)
 
-    console.log(temp);
-    let lat = weatherData.coord.lat;
-    let lon = weatherData.coord.lon;
-    console.log(weatherData);
+
+    let lat = data.coord.lat;
+    let lon = data.coord.lon;
+    let pedictions = await getPredictions(lat, lon, 'minutely,hourly')
+    console.log(pedictions);
     info.textContent = city
     countryInitials.textContent = county
   } catch (error) {
