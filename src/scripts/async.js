@@ -33,9 +33,10 @@ let setlocalTime = (data) => {
 }
 
 let setTemp = (data, num) => {
-  let temperature = document.querySelector('.temperature')
-  let feelsLike = document.querySelector('.undertop__feelslike')
-  temperature.textContent = (getTemp(data))[num]
+  let temperature = document.querySelector('.temperature');
+  temperature.textContent = ''
+  let feelsLike = document.querySelector('.undertop__feelslike');
+  temperature.textContent = (getTemp(data))[num];
 }
 
 
@@ -43,11 +44,6 @@ let populateDom = (data, num = null) => {
   let location = document.querySelector('.location');
   let countryInitials = document.querySelector('.countryInitials');
   let descr = document.querySelector('.description');
-  if (num) {
-    setTemp(data, num)
-  } else {
-    setTemp(data, 0)
-  }
 
   descr.textContent = data.weather[0].main
 
@@ -72,14 +68,16 @@ async function fetchData(url) {
     let response = await fetch(url);
     let data = await response.json();
     populateDom(data)
+    setTemp(data, 0)
     let topinfo = document.querySelector('.topinfo');
     topinfo.addEventListener('click', () => {
       if (!topinfo.classList.contains('fahrenheit')) {
-        topinfo.classList.remove('fahrenheit')
-        setTemp(data, 0)
-      } else {
+        console.log(topinfo);
         topinfo.classList.add('fahrenheit')
         setTemp(data, 1)
+      } else {
+        topinfo.classList.remove('fahrenheit')
+        setTemp(data, 0)
       }
     })
 
