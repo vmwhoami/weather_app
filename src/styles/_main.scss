@@ -1,0 +1,23 @@
+.main{
+ 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__con{
+display: flex;
+flex-direction: column;
+  }
+
+  &__notice{
+    font-size: 1rem;
+    text-align: center;
+   
+  }
+  &__time{
+font-size: 10rem;
+  }
+  &__date{
+    margin: 1rem;
+font-size: 2rem;
+  }
+}

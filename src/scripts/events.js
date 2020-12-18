@@ -1,38 +1,35 @@
 import inputValidtion from './validations';
 import { forecast, weatherNow } from './queries';
 import { fetchData } from './async';
+
 export default function addEventsToSearch(value = null) {
-  let input = document.getElementById("input");
-  let btn = document.getElementById("btn");
-  let err = document.querySelector('.error__msg');
-
-
+  const input = document.getElementById('input');
+  const btn = document.getElementById('btn');
+  const err = document.querySelector('.error__msg');
 
 
   window.onload = () => {
-    input.focus()
-  }
+    input.focus();
+  };
 
   btn.addEventListener('click', () => {
-    let errmsg = inputValidtion(input)
+    const errmsg = inputValidtion(input);
     if (!errmsg) {
-      let searchloc = weatherNow(input.value);
-      fetchData(searchloc)
-      input.value = "";
+      const searchloc = weatherNow(input.value);
+      fetchData(searchloc);
+      input.value = '';
     } else {
-      err.classList.add('visible')
-      err.textContent = errmsg
+      err.classList.add('visible');
+      err.textContent = errmsg;
     }
-  })
+  });
 
   input.addEventListener('keyup', (e) => {
-    let key = e.key;
-    if (key === "Enter")
-      btn.click();
-  })
+    const { key } = e;
+    if (key === 'Enter') btn.click();
+  });
 
   input.addEventListener('focus', () => {
-    err.classList.remove('visible')
-  })
+    err.classList.remove('visible');
+  });
 }
-

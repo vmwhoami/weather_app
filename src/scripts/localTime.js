@@ -1,26 +1,25 @@
 
-let getTime = (str) => {
-  let time = str.split(',');
-  let hours = time[1].split(':');
-  let onlyH = `${hours[0]}:${hours[1]}`.trim()
-  return onlyH
-}
+const getTime = (str) => {
+  const time = str.split(',');
+  const hours = time[1].split(':');
+  const onlyH = `${hours[0]}:${hours[1]}`.trim();
+  return onlyH;
+};
 
 export default function getLocalTime(data) {
-  let timezone = data.timezone
-  let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  let date = new Date();
+  const { timezone } = data;
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const date = new Date();
   let localTime = date.getTime();
-  let localOffset = date.getTimezoneOffset() * 60000;
-  let utc = localTime + localOffset;
+  const localOffset = date.getTimezoneOffset() * 60000;
+  const utc = localTime + localOffset;
   localTime = utc + (1000 * timezone);
-  let nd = new Date(localTime)
-  let day = days[nd.getDay()];
-  let dayOfMonth = nd.getDate()
-  let month = months[nd.getMonth()];
-  let time = nd.toLocaleString();
-  let onlyH = getTime(time);
-  return [day, dayOfMonth, month, onlyH]
-
+  const nd = new Date(localTime);
+  const day = days[nd.getDay()];
+  const dayOfMonth = nd.getDate();
+  const month = months[nd.getMonth()];
+  const time = nd.toLocaleString();
+  const onlyH = getTime(time);
+  return [day, dayOfMonth, month, onlyH];
 }
