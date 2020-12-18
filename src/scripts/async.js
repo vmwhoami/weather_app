@@ -16,26 +16,36 @@ let setImg = (data, location) => {
   return imgLink
 }
 
-
-let populateDom = (data) => {
-  let location = document.querySelector('.location');
-  let countryInitials = document.querySelector('.countryInitials');
-  let temperature = document.querySelector('.temperature');
+let setImages = (data) => {
   let img = document.querySelector('.img');
-  let descr = document.querySelector('.description')
-  let infoimg = document.querySelector('.infoimg')
+  let infoimg = document.querySelector('.infoimg');
   img.src = setImg(data, 'imgs');
   infoimg.src = setImg(data, 'icons');
+}
 
+let setlocalTime = (data) => {
   let time = getLocalTime(data);
-
   let dayofweek = time[0];
   let date = time[1];
   let month = time[2];
   let hoursMin = time[3]
-  console.log(month);
+}
+
+let setTemp = (data, num) => {
+  let temperature = document.querySelector('.temperature')
+  let feelsLike = document.querySelector('.undertop__feelslike')
+  temperature.textContent = (getTemp(data))[num]
+}
+
+
+let populateDom = (data) => {
+  let location = document.querySelector('.location');
+  let countryInitials = document.querySelector('.countryInitials');
+  let descr = document.querySelector('.description');
+  setImages(data)
+  setTemp(data, 0)
   descr.textContent = data.weather[0].main
-  temperature.textContent = (getTemp(data))[0]
+
   location.textContent = data.name
   countryInitials.textContent = data.sys.country
 }

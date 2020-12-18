@@ -8,7 +8,7 @@ export default function addEventsToSearch(value = null) {
   let topinfo = document.querySelector('.topinfo');
 
   topinfo.addEventListener('click', () => {
-    console.log("suck dick")
+    fetchData()
   })
 
 
