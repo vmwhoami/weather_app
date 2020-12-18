@@ -2,9 +2,16 @@ import inputValidtion from './validations';
 import { forecast, weatherNow } from './queries';
 import { fetchData } from './async';
 export default function addEventsToSearch(value = null) {
-  let input = document.getElementById("input")
-  let btn = document.getElementById("btn")
-  let err = document.querySelector('.error__msg')
+  let input = document.getElementById("input");
+  let btn = document.getElementById("btn");
+  let err = document.querySelector('.error__msg');
+  let topinfo = document.querySelector('.topinfo');
+
+  topinfo.addEventListener('click', () => {
+    console.log("suck dick")
+  })
+
+
 
   window.onload = () => {
     input.focus()

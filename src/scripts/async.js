@@ -17,7 +17,6 @@ let setImg = (data, location) => {
 }
 
 
-
 let populateDom = (data) => {
   let location = document.querySelector('.location');
   let countryInitials = document.querySelector('.countryInitials');
@@ -27,11 +26,23 @@ let populateDom = (data) => {
   let infoimg = document.querySelector('.infoimg')
   img.src = setImg(data, 'imgs');
   infoimg.src = setImg(data, 'icons');
+
+  let time = getLocalTime(data);
+
+  let dayofweek = time[0];
+  let date = time[1];
+  let month = time[2];
+  let hoursMin = time[3]
+  console.log(month);
   descr.textContent = data.weather[0].main
   temperature.textContent = (getTemp(data))[0]
   location.textContent = data.name
   countryInitials.textContent = data.sys.country
 }
+
+
+
+
 async function getPredictions(lat, lon, exclude) {
   let link = forecast(lat, lon, exclude);
   let data = fetch(link);
@@ -40,20 +51,18 @@ async function getPredictions(lat, lon, exclude) {
   return predictions
 }
 
-let countryInitials = document.querySelector('.countryInitials');
+
 async function fetchData(url) {
   try {
     let response = await fetch(url);
     let data = await response.json();
     populateDom(data)
 
-    let temp = getTemp(data)
-
 
     let lat = data.coord.lat;
     let lon = data.coord.lon;
     let pedictions = await getPredictions(lat, lon, 'minutely,hourly')
-    console.log(pedictions);
+
 
   } catch (error) {
     let err = document.querySelector('.error__msg');
