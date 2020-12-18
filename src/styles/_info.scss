@@ -1,0 +1,20 @@
+.search{
+  position: absolute;
+  display: flex;
+  background-color: rgb(255, 255, 255);
+ 
+ height: 30%;
+ width: 50%;
+
+  margin-top: 10vh;
+  z-index: 200;
+}
+
+ 
+.input{
+  width: 30vw;
+  height: 5rem;
+  padding: 1rem;
+  border-radius: 5px;
+  border: none;
+}

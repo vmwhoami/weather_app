@@ -1,4 +1,5 @@
 import { forecast } from './queries';
+import getLocalTime from './localTime';
 let info = document.querySelector('.location');
 
 let getTemp = (data) => {
@@ -8,11 +9,19 @@ let getTemp = (data) => {
   return [celsius, fahrenheit]
 }
 
+let getBgimg = (data) => {
+  let imgcode = data.weather[0].icon;
+  let imgLink = `../src/imgs/${imgcode}.png`;
+  console.log(imgLink);
+  return imgLink
+}
 
 let populateDom = (data) => {
   let location = document.querySelector('.location');
-  let countryInitials = document.querySelector('.countryInitials')
-  let temperature = document.querySelector('.temperature')
+  let countryInitials = document.querySelector('.countryInitials');
+  let temperature = document.querySelector('.temperature');
+  let img = document.querySelector('.img');
+  img.src = getBgimg(data);
   temperature.textContent = (getTemp(data))[0]
   location.textContent = data.name
   countryInitials.textContent = data.sys.country
@@ -31,6 +40,7 @@ async function fetchData(url) {
     let response = await fetch(url);
     let data = await response.json();
     populateDom(data)
+
     let temp = getTemp(data)
 
 

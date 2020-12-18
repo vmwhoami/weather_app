@@ -5,8 +5,12 @@ export default function addEventsToSearch() {
   let input = document.getElementById("input")
   let btn = document.getElementById("btn")
   let err = document.querySelector('.error__msg')
-  btn.addEventListener('click', () => {
 
+  window.onload = () => {
+    input.focus()
+  }
+
+  btn.addEventListener('click', () => {
     let errmsg = inputValidtion(input)
     if (!errmsg) {
       let searchloc = weatherNow(input.value);

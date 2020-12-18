@@ -8,7 +8,6 @@ let getTime = (str) => {
 export default function getLocalTime(offset) {
   let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
   let date = new Date();
   let localTime = date.getTime();
   let localOffset = date.getTimezoneOffset() * 60000;
