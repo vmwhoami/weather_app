@@ -44,28 +44,40 @@ const setlocalTime = (data) => {
   dispTime.textContent = hoursMin;
 };
 
-const setTemp = (data, num) => {
+
+const setTemp = (data) => {
+  const topinfo = document.querySelector('.topinfo');
   const temperature = document.querySelector('.temperature');
-  temperature.textContent = '';
   const feel = document.querySelector('.undertop__feelslike');
-  if (num === 0) {
-    temperature.textContent = `${(getTemp(data))[num]}C`;
-    feel.textContent = `Feels like ${(feelsLike(data))[num]}C`;
+  if (topinfo.classList.contains('fahrenheit')) {
+    temperature.textContent = `${(getTemp(data))[1]}F`;
+    feel.textContent = `Feels like ${(feelsLike(data))[1]}F`;
   } else {
-    temperature.textContent = `${(getTemp(data))[num]}F`;
-    feel.textContent = `Feels like ${(feelsLike(data))[num]}F`;
+    temperature.textContent = `${(getTemp(data))[0]}C`;
+    feel.textContent = `Feels like ${(feelsLike(data))[0]}C`;
   }
 };
+const changeMerics = (data) => {
+  const search = document.querySelector('.search');
+  search.addEventListener('click', () => {
+    const topinfo = document.querySelector('.topinfo');
+    if (!topinfo.classList.contains('fahrenheit')) {
+      topinfo.classList.add('fahrenheit');
+      setTemp(data);
+    } else {
+      topinfo.classList.remove('fahrenheit');
+      setTemp(data);
+    }
+  });
+};
 
-
-const populateDom = (data, num = null) => {
+const populateDom = (data) => {
   setImages(data);
+  changeMerics(data)
   const location = document.querySelector('.location');
   const countryInitials = document.querySelector('.countryInitials');
   const descr = document.querySelector('.description');
-
   descr.textContent = data.weather[0].main;
-
   location.textContent = data.name;
   countryInitials.textContent = data.sys.country;
 };
@@ -85,22 +97,13 @@ async function fetchData(url) {
     const response = await fetch(url);
     const data = await response.json();
     populateDom(data);
-    setTemp(data, 0);
-    setlocalTime(data);
-    const topinfo = document.querySelector('.topinfo');
-    topinfo.addEventListener('click', () => {
-      if (!topinfo.classList.contains('fahrenheit')) {
-        topinfo.classList.add('fahrenheit');
-        setTemp(data, 1);
-      } else {
-        topinfo.classList.remove('fahrenheit');
-        setTemp(data, 0);
-      }
-    });
+    setTemp(data);
 
+    setlocalTime(data);
     const { lat } = data.coord;
     const { lon } = data.coord;
     const pedictions = await getPredictions(lat, lon, 'minutely,hourly');
+    console.log(predictions);
   } catch (error) {
     const err = document.querySelector('.error__msg');
     err.textContent = "Couldn't find your location";
