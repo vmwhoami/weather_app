@@ -50,9 +50,11 @@ const setTemp = (data) => {
   const temperature = document.querySelector('.temperature');
   const feel = document.querySelector('.undertop__feelslike');
   if (topinfo.classList.contains('fahrenheit')) {
+    console.log('hello');
     temperature.textContent = `${(getTemp(data))[1]}F`;
     feel.textContent = `Feels like ${(feelsLike(data))[1]}F`;
-  } else {
+  } else if (!topinfo.classList.contains('fahrenheit')) {
+    console.log('goodbuy');
     temperature.textContent = `${(getTemp(data))[0]}C`;
     feel.textContent = `Feels like ${(feelsLike(data))[0]}C`;
   }
@@ -73,7 +75,7 @@ const changeMerics = (data) => {
 
 const populateDom = (data) => {
   setImages(data);
-  changeMerics(data)
+  changeMerics(data);
   const location = document.querySelector('.location');
   const countryInitials = document.querySelector('.countryInitials');
   const descr = document.querySelector('.description');
@@ -102,8 +104,7 @@ async function fetchData(url) {
     setlocalTime(data);
     const { lat } = data.coord;
     const { lon } = data.coord;
-    const pedictions = await getPredictions(lat, lon, 'minutely,hourly');
-    console.log(predictions);
+    await getPredictions(lat, lon, 'minutely,hourly');
   } catch (error) {
     const err = document.querySelector('.error__msg');
     err.textContent = "Couldn't find your location";
