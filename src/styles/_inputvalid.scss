@@ -1,0 +1,36 @@
+
+
+.input__container{
+  position: absolute;
+  top: 1vh;
+  left: 1vw;
+  background-color: white;
+ z-index: 20;
+}
+ 
+.input{
+  width: 30vw;
+  height: 5rem;
+  padding: 1rem;
+  border-radius: 5px;
+  border: none;
+}
+
+
+
+.error__msg{
+  color: red;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  visibility: hidden;
+  transform: scaleY(0);
+  transition: all .2s;
+}
+
+.visible{
+  visibility: visible;
+  transform: scaleY(1);
+}
+
+
+
