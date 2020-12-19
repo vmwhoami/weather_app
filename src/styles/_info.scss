@@ -1,12 +1,11 @@
 
-
-.search{
+.search {
   cursor: pointer;
   position: absolute;
   top: 15vh;
   display: flex;
   flex-direction: column;
-  background-color: rgba(5, 5, 5, 0.4); 
+  background-color: rgba(5, 5, 5, 0.4);
   min-height: 30%;
   width: 50%;
   z-index: 200;
@@ -14,20 +13,21 @@
   overflow: hidden;
   padding: 1rem;
   color: white;
-  &::before{
+
+  &::before {
     content: "";
     position: absolute;
     left: 0;
-    top:11vh;
+    top: 11vh;
     background-color: hsla(0, 0%, 100%, 0.275);
     height: 1px;
     width: 100%;
   }
 }
 
-.topinfo{
+.topinfo {
   cursor: pointer;
- width: 100%;
+  width: 100%;
   height: 8vh;
   padding: 0 1rem;
   display: flex;
@@ -35,30 +35,31 @@
   justify-content: space-between;
   position: relative;
 }
-.temptext{
+
+.temptext {
   font-size: 2.5rem;
 }
-.temperature{
+
+.temperature {
   font-size: 5rem;
-  margin-left:1rem ;
+  margin-left: 1rem;
 }
 
-.infoimg{
+.infoimg {
   width: 7rem;
   height: 7rem;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50% ,-50%);
+  transform: translate(-50%, -50%);
 }
 
-.description{
+.description {
   text-transform: uppercase;
   font-size: 2rem;
 }
 
-.undertop{
- 
+.undertop {
   width: 100%;
   height: 6vh;
   margin-top: 2.5vh;
@@ -67,32 +68,29 @@
   align-items: center;
 }
 
-
-.locattion__cont{
-  
+.locattion__cont {
   color: white;
   display: flex;
   align-items: center;
 }
 
-
-.info{
+.info {
   display: flex;
 }
 
-.location__cont{
+.location__cont {
   display: flex;
   align-items: center;
   justify-content: space-between;
-width: 100%;
-  
-}
-.location{
-font-size: 3.5rem;
-padding: 1rem;
+  width: 100%;
 }
 
-.countryInitials{
+.location {
+  font-size: 3.5rem;
+  padding: 1rem;
+}
+
+.countryInitials {
   font-size: 2.5rem;
   padding: 1rem;
 }

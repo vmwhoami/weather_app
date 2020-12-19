@@ -1,8 +1,8 @@
 import inputValidtion from './validations';
-import { forecast, weatherNow } from './queries';
-import { fetchData } from './async';
+import { weatherNow } from './queries';
+import fetchData from './async';
 
-export default function addEventsToSearch(value = null) {
+export default function addEventsToSearch() {
   const input = document.getElementById('input');
   const btn = document.getElementById('btn');
   const err = document.querySelector('.error__msg');
@@ -18,6 +18,7 @@ export default function addEventsToSearch(value = null) {
       const searchloc = weatherNow(input.value);
       fetchData(searchloc);
       input.value = '';
+      err.textContent = '';
     } else {
       err.classList.add('visible');
       err.textContent = errmsg;

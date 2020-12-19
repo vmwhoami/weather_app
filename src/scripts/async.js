@@ -4,15 +4,21 @@ import getLocalTime from './localTime';
 
 const getTemp = (data) => {
   const num = Number(data.main.temp);
-  const celsius = `${Math.round(num - 273.15)}\xB0`;
-  const fahrenheit = `${Math.round((num - 273.15) * 9 / 5 + 32)}\xB0`;
+  const cel = Math.round(num - 273.15);
+  const celsius = `${cel}\xB0`;
+  const f = (num - 273.15) * 9;
+  const faht = Math.round((f / 5) + 32);
+  const fahrenheit = `${faht}\xB0`;
   return [celsius, fahrenheit];
 };
 
 const feelsLike = (data) => {
   const num = Number(data.main.feels_like);
-  const celsius = `${Math.round(num - 273.15)}\xB0`;
-  const fahrenheit = `${Math.round((num - 273.15) * 9 / 5 + 32)}\xB0`;
+  const cel = Math.round(num - 273.15);
+  const celsius = `${cel}\xB0`;
+  const f = (num - 273.15) * 9;
+  const faht = Math.round((f / 5) + 32);
+  const fahrenheit = `${faht}\xB0`;
   return [celsius, fahrenheit];
 };
 
@@ -45,36 +51,29 @@ const setlocalTime = (data) => {
 };
 
 
-const setTemp = (data) => {
-  const topinfo = document.querySelector('.topinfo');
+const setTemp = (data, num, s) => {
   const temperature = document.querySelector('.temperature');
   const feel = document.querySelector('.undertop__feelslike');
-  if (topinfo.classList.contains('fahrenheit')) {
-    console.log('hello');
-    temperature.textContent = `${(getTemp(data))[1]}F`;
-    feel.textContent = `Feels like ${(feelsLike(data))[1]}F`;
-  } else if (!topinfo.classList.contains('fahrenheit')) {
-    console.log('goodbuy');
-    temperature.textContent = `${(getTemp(data))[0]}C`;
-    feel.textContent = `Feels like ${(feelsLike(data))[0]}C`;
-  }
+  temperature.textContent = `${(getTemp(data))[num]}${s}`;
+  feel.textContent = `Feels like ${(feelsLike(data))[num]}${s}`;
 };
 const changeMerics = (data) => {
   const search = document.querySelector('.search');
   search.addEventListener('click', () => {
     const topinfo = document.querySelector('.topinfo');
-    if (!topinfo.classList.contains('fahrenheit')) {
-      topinfo.classList.add('fahrenheit');
-      setTemp(data);
+    topinfo.classList.toggle('fahrenheit');
+    if (topinfo.classList.contains('fahrenheit')) {
+      setTemp(data, 1, 'F');
     } else {
-      topinfo.classList.remove('fahrenheit');
-      setTemp(data);
+      setTemp(data, 0, 'C');
     }
   });
 };
 
 const populateDom = (data) => {
+  setlocalTime(data);
   setImages(data);
+  setTemp(data, 0, 'C');
   changeMerics(data);
   const location = document.querySelector('.location');
   const countryInitials = document.querySelector('.countryInitials');
@@ -94,14 +93,11 @@ async function getPredictions(lat, lon, exclude) {
 }
 
 
-async function fetchData(url) {
+export default async function fetchData(url) {
   try {
     const response = await fetch(url);
     const data = await response.json();
     populateDom(data);
-    setTemp(data);
-
-    setlocalTime(data);
     const { lat } = data.coord;
     const { lon } = data.coord;
     await getPredictions(lat, lon, 'minutely,hourly');
@@ -110,5 +106,3 @@ async function fetchData(url) {
     err.textContent = "Couldn't find your location";
   }
 }
-
-export { fetchData };
