@@ -9,7 +9,7 @@ Microverse project - Weather App
 
 ## Live Demo Website
 
-Click the following to see a live version of the site.
+Click the following (https://vigorous-hopper-8a447e.netlify.app/) to see a live version of the site.
 
 ![screenshot](./weatherapp.gif)<br>
 
