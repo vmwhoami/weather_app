@@ -83,6 +83,12 @@ const populateDom = (data) => {
   countryInitials.textContent = data.sys.country;
 };
 
+const showError = (error) => {
+  if (error) {
+    const err = document.querySelector('.error__msg');
+    err.textContent = 'Location not found';
+  }
+};
 
 async function getPredictions(lat, lon, exclude) {
   const link = forecast(lat, lon, exclude);
@@ -102,7 +108,6 @@ export default async function fetchData(url) {
     const { lon } = data.coord;
     await getPredictions(lat, lon, 'minutely,hourly');
   } catch (error) {
-    const err = document.querySelector('.error__msg');
-    err.textContent = "Couldn't find your location";
+    showError(error);
   }
 }
