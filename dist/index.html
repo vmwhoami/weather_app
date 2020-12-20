@@ -1,55 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script defer src="./main.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <script defer src="./main.js"></script>
-</head>
-
-<body>
-  <div class="imgcontainer">
-    <img class="img" src="../src/imgs/01n.png" alt="weather" />
-  </div>
-  <div class="imgfilter"></div>
-  <div class="input__container">
-    <input class="input" id="input" type="text" name="getweather" placeholder="Name of a city or Country" />
-    <span class="error__msg"></span>
-    <input class="btn" id="btn" type="button" value="getweather" />
-  </div>
-  <div class="container">
-    <div class="search">
-      <div class="topinfo">
-        <h4 class="temperature"></h4>
-        <img src="./icons/01d.png" alt="infoimg" class="infoimg" />
-        <span class="description"></span>
-      </div>
-
-      <div class="undertop">
-        <h4 class="undertop__feelslike"></h4>
-        <div class="maxmin">
-          <span class="min"></span>
-          <span class="max"></span>
+  <body>
+    <div class="imgcontainer">
+      <img class="img" src="./imgs/01n.png" alt="weather" />
+    </div>
+    <div class="imgfilter"></div>
+    <div class="input__container">
+      <input class="input" id="input" type="text" name="getweather" placeholder="Name of a city or Country" />
+      <span class="error__msg"></span>
+      <input class="btn" id="btn" type="button" value="getweather" />
+    </div>
+    <div class="container">
+      <div class="search">
+        <div class="topinfo">
+          <h4 class="temperature"></h4>
+          <img src="./icons/01d.png" alt="infoimg" class="infoimg" />
+          <span class="description"></span>
         </div>
-      </div>
 
-      <div class="main">
-        <div class="main__con">
-          <h4 class="main__time"></h4>
-          <span class="main__notice"></span>
+        <div class="undertop">
+          <h4 class="undertop__feelslike"></h4>
+          <div class="maxmin">
+            <span class="min"></span>
+            <span class="max"></span>
+          </div>
         </div>
-        <span class="main__date"></span>
-      </div>
 
-      <div class="info">
-        <div class="location__cont">
-          <h3 class="location"></h3>
-          <span class="countryInitials"></span>
+        <div class="main">
+          <div class="main__con">
+            <h4 class="main__time"></h4>
+            <span class="main__notice"></span>
+          </div>
+          <span class="main__date"></span>
+        </div>
+
+        <div class="info">
+          <div class="location__cont">
+            <h3 class="location"></h3>
+            <span class="countryInitials"></span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</body>
-
+  </body>
 </html>
