@@ -1,4 +1,3 @@
-
 const getTime = (str) => {
   const time = str.split(',');
   const hours = time[1].split(':');

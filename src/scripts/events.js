@@ -7,7 +7,6 @@ export default function addEventsToSearch() {
   const btn = document.getElementById('btn');
   const err = document.querySelector('.error__msg');
 
-
   window.onload = () => {
     input.focus();
   };

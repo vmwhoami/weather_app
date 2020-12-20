@@ -1,7 +1,6 @@
 import { forecast } from './queries';
 import getLocalTime from './localTime';
 
-
 const getTemp = (data) => {
   const num = Number(data.main.temp);
   const cel = Math.round(num - 273.15);
@@ -50,7 +49,6 @@ const setlocalTime = (data) => {
   dispTime.textContent = hoursMin;
 };
 
-
 const setTemp = (data, num, s) => {
   const temperature = document.querySelector('.temperature');
   const feel = document.querySelector('.undertop__feelslike');
@@ -97,7 +95,6 @@ async function getPredictions(lat, lon, exclude) {
   const predictions = raw.json();
   return predictions;
 }
-
 
 export default async function fetchData(url) {
   try {
