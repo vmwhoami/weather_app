@@ -1,6 +1,8 @@
 import inputValidtion from './validations';
 import { weatherNow } from './queries';
-import fetchData from './async';
+import {
+  fetchData, getPredictions, showError, populateDom,
+} from './async';
 
 export default function addEventsToSearch() {
   const input = document.getElementById('input');
@@ -15,7 +17,14 @@ export default function addEventsToSearch() {
     const errmsg = inputValidtion(input);
     if (!errmsg) {
       const searchloc = weatherNow(input.value);
-      fetchData(searchloc);
+      fetchData(searchloc).then((data) => {
+        populateDom(data);
+        const { lat } = data.coord;
+        const { lon } = data.coord;
+        getPredictions(lat, lon, 'minutely,hourly');
+      }).catch((error) => {
+        showError(error);
+      });
       input.value = '';
       err.textContent = '';
     } else {

@@ -36,7 +36,6 @@ const setImages = (data) => {
 
 const setlocalTime = (data) => {
   const notice = document.querySelector('.main__notice');
-
   const dispTime = document.querySelector('.main__time');
   const mainDate = document.querySelector('.main__date');
   const time = getLocalTime(data);
@@ -81,11 +80,10 @@ const populateDom = (data) => {
   countryInitials.textContent = data.sys.country;
 };
 
-const showError = (error) => {
-  if (error) {
-    const err = document.querySelector('.error__msg');
-    err.textContent = 'Location not found';
-  }
+const showError = (erro) => {
+  const err = document.querySelector('.error__msg');
+  err.classList.add('visible');
+  err.textContent = erro.message;
 };
 
 async function getPredictions(lat, lon, exclude) {
@@ -96,15 +94,20 @@ async function getPredictions(lat, lon, exclude) {
   return predictions;
 }
 
-export default async function fetchData(url) {
+async function fetchData(url) {
   try {
     const response = await fetch(url);
+    if (!response.ok) {
+      const dataError = await response.json();
+      return Promise.reject(new Error(dataError.message));
+    }
     const data = await response.json();
-    populateDom(data);
-    const { lat } = data.coord;
-    const { lon } = data.coord;
-    await getPredictions(lat, lon, 'minutely,hourly');
+    return data;
   } catch (error) {
-    showError(error);
+    return Promise.reject(new Error('network failure'));
   }
 }
+
+export {
+  fetchData, getPredictions, showError, populateDom,
+};
