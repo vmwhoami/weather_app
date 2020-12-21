@@ -55,22 +55,31 @@ const setTemp = (data, num, s) => {
   feel.textContent = `Feels like ${(feelsLike(data))[num]}${s}`;
 };
 const changeMerics = (data) => {
-  const search = document.querySelector('.search');
-  search.addEventListener('click', () => {
-    const topinfo = document.querySelector('.topinfo');
-    topinfo.classList.toggle('fahrenheit');
-    if (topinfo.classList.contains('fahrenheit')) {
-      setTemp(data, 1, 'F');
-    } else {
-      setTemp(data, 0, 'C');
-    }
+  const topinfo = document.querySelector('.topinfo');
+  if (topinfo.classList.contains('fahrenheit')) {
+    setTemp(data, 1, 'F');
+  } else if (!topinfo.classList.contains('fahrenheit')) {
+    setTemp(data, 0, 'C');
+  }
+};
+
+const watchClass = (data) => {
+  const topinfo = document.querySelector('.topinfo');
+  const observer = new MutationObserver((() => {
+    changeMerics(data);
+  }));
+  observer.observe(topinfo, {
+    attributes: true,
+    attributeFilter: ['class'],
+    childList: false,
+    characterData: false,
   });
 };
 
 const populateDom = (data) => {
   setlocalTime(data);
   setImages(data);
-  setTemp(data, 0, 'C');
+  watchClass(data);
   changeMerics(data);
   const location = document.querySelector('.location');
   const countryInitials = document.querySelector('.countryInitials');
@@ -109,5 +118,6 @@ async function fetchData(url) {
 }
 
 export {
-  fetchData, getPredictions, showError, populateDom,
+  fetchData, getPredictions, showError, populateDom, changeMerics,
+
 };
