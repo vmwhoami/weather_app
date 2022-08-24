@@ -15,11 +15,7 @@ export default function addEventsToSearch() {
   };
 
   const search = document.querySelector('.search');
-
-  search.addEventListener('click', () => {
-    const topinfo = document.querySelector('.topinfo');
-    topinfo.classList.toggle('fahrenheit');
-  });
+  search.addEventListener('click', () => document.querySelector('.topinfo').classList.toggle('fahrenheit'));
 
   btn.addEventListener('click', () => {
     const errmsg = inputValidtion(input);

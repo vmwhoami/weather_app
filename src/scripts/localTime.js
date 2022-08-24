@@ -21,4 +21,5 @@ export default function getLocalTime(data) {
   const time = nd.toLocaleString();
   const onlyH = getTime(time);
   return [day, dayOfMonth, month, onlyH];
+  debugger;
 }
