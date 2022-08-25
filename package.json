@@ -7,13 +7,11 @@
   "scripts": {
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
-    "start":   "webpack serve --mode development --env development"
-
+    "start": "webpack serve --mode development --env development"
   },
   "author": "vmwhoami",
   "license": "ISC",
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
     "css-loader": "^5.0.1",
     "dotenv-webpack": "^6.0.0",
     "eslint": "^6.8.0",
@@ -32,7 +30,10 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@babel/eslint-parser": "^7.18.9",
+    "chokidar": "^3.5.3",
     "custom-env": "^2.0.1",
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "uuid": "^8.3.2"
   }
 }

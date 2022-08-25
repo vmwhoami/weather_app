@@ -119,5 +119,4 @@ async function fetchData(url) {
 
 export {
   fetchData, getPredictions, showError, populateDom, changeMerics,
-
 };

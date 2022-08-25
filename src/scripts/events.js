@@ -1,18 +1,13 @@
 import inputValidtion from './validations';
 import { weatherNow } from './queries';
-import {
-  fetchData, getPredictions, showError, populateDom,
-
-} from './async';
+import { fetchData, getPredictions, showError, populateDom } from './async';
 
 export default function addEventsToSearch() {
   const input = document.getElementById('input');
   const btn = document.getElementById('btn');
   const err = document.querySelector('.error__msg');
 
-  window.onload = () => {
-    input.focus();
-  };
+  window.onload = () => input.focus();
 
   const search = document.querySelector('.search');
   search.addEventListener('click', () => document.querySelector('.topinfo').classList.toggle('fahrenheit'));
