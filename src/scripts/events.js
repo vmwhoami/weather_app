@@ -18,9 +18,9 @@ export default function addEventsToSearch() {
       const searchloc = weatherNow(input.value);
       fetchData(searchloc).then((data) => {
         populateDom(data);
-        const { lat } = data.coord;
-        const { lon } = data.coord;
-        getPredictions(lat, lon, 'minutely,hourly');
+        const { lat, lon } = data.coord;
+        
+        getPredictions(lat, lon, 'minutely, hourly');
       }).catch((error) => {
         showError(error);
       });
