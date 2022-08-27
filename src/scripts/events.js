@@ -8,7 +8,6 @@ export default function addEventsToSearch() {
   const err = document.querySelector('.error__msg');
 
   window.onload = () => input.focus();
-
   const search = document.querySelector('.search');
   search.addEventListener('click', () => document.querySelector('.topinfo').classList.toggle('fahrenheit'));
 
@@ -19,7 +18,6 @@ export default function addEventsToSearch() {
       fetchData(searchloc).then((data) => {
         populateDom(data);
         const { lat, lon } = data.coord;
-        
         getPredictions(lat, lon, 'minutely, hourly');
       }).catch((error) => {
         showError(error);

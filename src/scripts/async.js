@@ -38,6 +38,7 @@ const setlocalTime = (data) => {
   const notice = document.querySelector('.main__notice');
   const dispTime = document.querySelector('.main__time');
   const mainDate = document.querySelector('.main__date');
+
   const time = getLocalTime(data);
   const dayofweek = time[0];
   const date = time[1];
@@ -117,6 +118,4 @@ async function fetchData(url) {
   }
 }
 
-export {
-  fetchData, getPredictions, showError, populateDom, changeMerics,
-};
+export { fetchData, getPredictions, showError, populateDom, changeMerics };
