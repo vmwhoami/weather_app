@@ -38,15 +38,10 @@ const setlocalTime = (data) => {
   const notice = document.querySelector('.main__notice');
   const dispTime = document.querySelector('.main__time');
   const mainDate = document.querySelector('.main__date');
-
   const time = getLocalTime(data);
-  const dayofweek = time[0];
-  const date = time[1];
-  const month = time[2];
-  const hoursMin = time[3];
-  mainDate.textContent = `${dayofweek}, ${date} of ${month}`;
+  mainDate.textContent = `${time.date}`;
+  dispTime.textContent = `${time.hours}`;
   notice.textContent = '*Local time 24 hours format';
-  dispTime.textContent = hoursMin;
 };
 
 const setTemp = (data, num, s) => {
